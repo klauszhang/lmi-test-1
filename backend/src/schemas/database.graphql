@@ -1,0 +1,8 @@
+extend type Query {
+  database: Database!
+}
+
+type Database {
+  keys: [String]!
+  get(key: String!): JSON
+}

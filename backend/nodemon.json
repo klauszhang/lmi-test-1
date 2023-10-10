@@ -1,0 +1,8 @@
+{
+  "verbose": true,
+  "ignore": [],
+  "execMap": {
+    "js": "node src/server.js",
+    "ts": "ts-node src/server.ts"
+  }
+}
