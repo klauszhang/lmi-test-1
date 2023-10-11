@@ -1849,7 +1849,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"abstract-level@npm:^1.0.2":
+"abstract-level@npm:^1.0.2, abstract-level@npm:^1.0.3":
   version: 1.0.3
   resolution: "abstract-level@npm:1.0.3"
   dependencies:
@@ -2084,6 +2084,7 @@ __metadata:
     "@types/lodash": ^4.14.179
     "@types/node": ^20.8.4
     "@types/uuid": ^9.0.5
+    abstract-level: ^1.0.3
     convict: ^6.2.4
     graphql: ^16.8.1
     graphql-type-json: ^0.3.2

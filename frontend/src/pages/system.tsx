@@ -1,9 +1,9 @@
-import { useHealth } from '../hooks/query/use-health'
+import { useHealthQuery } from '../hooks/query/use-health'
 import { PageContainer } from '../components/page-container'
 import { Stack } from '@mui/material'
 
 export function System() {
-  const { loading, error, data } = useHealth()
+  const { loading, error, data } = useHealthQuery()
 
   let content = 'loading'
 

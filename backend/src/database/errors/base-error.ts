@@ -1,7 +1,7 @@
 type ErrorTypes = 'InternalError' | 'DataError'
 type Fault = 'Dev' | 'Data' | 'User'
 
-export abstract class BaseError extends Error {
+export abstract class DatabaseError extends Error {
   constructor(
     public message: string,
     public type: ErrorTypes,

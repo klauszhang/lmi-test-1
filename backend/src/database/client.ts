@@ -10,7 +10,7 @@ export const client = new Level(dataFolder, {
 
 // async function printKeys() {
 //   try {
-//     console.log('Keys', await client.get('stuff'))
+//     console.log('data', await client.keys().all())
 //   } catch (err) {
 //     console.error(err)
 //   }

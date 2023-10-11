@@ -6,6 +6,7 @@ import path from 'path'
 import { config } from './config'
 import { MetadataRepo } from './database/repositories/metadata'
 import { logger } from './services/logger'
+import { EventRepo } from './database/repositories/event'
 
 const port = config.get('server.port')
 
@@ -15,8 +16,10 @@ const resolvers = loadFilesSync(path.join(__dirname, '/resolvers'))
 export type Context = {
   dataSources: {
     metaData: MetadataRepo
+    eventData: EventRepo
   }
 }
+
 const server = new ApolloServer<Context>({
   typeDefs: schemas,
   resolvers,
@@ -26,7 +29,8 @@ async function runServer() {
   const { url } = await startStandaloneServer<Context>(server, {
     context: async ({}) => {
       const metaData = new MetadataRepo()
-      const dataSources = { metaData }
+      const eventData = new EventRepo()
+      const dataSources = { metaData, eventData }
 
       return { dataSources }
     },

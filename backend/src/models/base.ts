@@ -18,5 +18,5 @@ export abstract class BaseModel<T extends TData> {
 }
 
 export function getKey(type: string, id: string) {
-  return type + ':' + id
+  return id
 }

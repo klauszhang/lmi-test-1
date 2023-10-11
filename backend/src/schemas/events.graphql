@@ -1,0 +1,28 @@
+extend type Query {
+  events(limit: Int, after: ID): PagedEventInfo!
+  event(id: ID!): Event!
+}
+
+type Event {
+  id: ID!
+  name: String!
+  startDate: String!
+  eventType: EventType!
+  address: String!
+  program: String!
+}
+
+enum EventType {
+  online
+  live
+}
+
+type PagedEventInfo {
+  pageInfo: PageInfo!
+  edges: [EventPageNode]!
+}
+
+type EventPageNode {
+  node: Event!
+  cursor: String!
+}

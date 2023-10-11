@@ -1,10 +1,9 @@
 import { Level } from 'level'
-import { MigrationData, MigrationModel } from '../../models/migration'
 import { client } from '../client'
-import { Dal } from '../dal'
 import { EventData, EventModel } from '../../models/event'
+import { BaseRepo } from './base'
 
-export class EventRepo extends Dal<EventData, EventModel> {
+export class EventRepo extends BaseRepo<EventData, EventModel> {
   constructor(db: Level = client) {
     super('Event', db)
   }

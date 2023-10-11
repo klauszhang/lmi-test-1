@@ -2,12 +2,20 @@ import { Level } from 'level'
 import { BaseModel, TData, getKey } from '../models/base'
 import { logger } from '../services/logger'
 import { Logger } from 'pino'
-import { DataError } from './errors/data-error'
+import { AbstractSublevel, AbstractValueIteratorOptions } from 'abstract-level'
+import { toPaginatedData } from '../models/pagination'
 
 export abstract class Dal<TD extends TData, T extends BaseModel<TD>> {
   logger: Logger
-  protected constructor(protected type: string, protected db: Level) {
+  db: AbstractSublevel<
+    Level<string, string>,
+    string | Buffer | Uint8Array,
+    string,
+    string
+  >
+  protected constructor(protected type: string, db: Level) {
     this.logger = logger.child({ dalType: type, service: 'dal' })
+    this.db = db.sublevel(type)
   }
 
   async get(id: string) {
@@ -40,10 +48,26 @@ export abstract class Dal<TD extends TData, T extends BaseModel<TD>> {
     return this.db.del(getKey(this.type, id))
   }
 
-  protected toModel(data: string): T | null {
-    if (!data) return null
-    return JSON.parse(data) as T
+  async getAll(offset: number, after?: string): Promise<TD[]> {
+    this.logger.trace({ offset, after }, `get all data`)
+
+    const scanConfig: AbstractValueIteratorOptions<string, string> = {
+      limit: offset,
+    }
+
+    if (after) {
+      scanConfig.gt = after
+    }
+
+    const values = await this.db.values(scanConfig).all()
+
+    return values
+      .map((value: string) => this.toModel(value))
+      .filter(Boolean) as TD[]
   }
 
-  // TODO add batch and other methods
+  protected toModel(data: string): TD | null {
+    if (!data) return null
+    return JSON.parse(data) as TD
+  }
 }

@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 
-export function useHealth() {
+export function useHealthQuery() {
   const { loading, error, data } = useQuery(gql`
     query GetHealth {
       health

@@ -8,6 +8,7 @@
   "dependencies": {
     "@apollo/server": "^4.9.4",
     "@graphql-tools/load-files": "^7.0.0",
+    "abstract-level": "^1.0.3",
     "convict": "^6.2.4",
     "graphql": "^16.8.1",
     "graphql-type-json": "^0.3.2",
