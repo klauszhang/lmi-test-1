@@ -1,7 +1,7 @@
 import { GraphQLFieldResolver } from 'graphql'
 import { Context } from '../server'
 import { EventData } from '../models/event'
-import { NotFoundError } from '../errors/bad-requests'
+import { NotFoundError } from '../models/errors/bad-requests'
 import { CursorBasedList } from '../models/pagination'
 
 const events: GraphQLFieldResolver<
