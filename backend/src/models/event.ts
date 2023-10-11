@@ -6,6 +6,7 @@ export type EventData = TData & {
   eventType: 'live' | 'online'
   program: string
   address: string
+  ticketIds: string[]
 }
 
 export class EventModel extends BaseModel<EventData> {

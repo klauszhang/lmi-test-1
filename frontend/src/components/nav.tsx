@@ -30,8 +30,8 @@ export function Nav() {
         <StyledNavLink to="/">
           <NavItem size="large">Home</NavItem>
         </StyledNavLink>
-        <StyledNavLink to="/search">
-          <NavItem size="large">Search Event</NavItem>
+        <StyledNavLink to="/events">
+          <NavItem size="large">Find Event</NavItem>
         </StyledNavLink>
         <StyledNavLink to="/booked">
           <NavItem size="large">Booked Event</NavItem>

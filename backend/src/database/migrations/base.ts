@@ -17,7 +17,7 @@ export abstract class BaseMigration {
     if (!after) {
       this.step = 0
     } else {
-      if (!after.step) {
+      if (!after.step && after.step !== 0) {
         throw new MgirationNotInitError(after)
       }
 

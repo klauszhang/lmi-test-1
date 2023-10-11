@@ -1,6 +1,6 @@
 import { Container, ContainerProps, styled } from '@mui/material'
 
-const StyledContainer = styled(Container)(({}) => ({
+const StyledContainer = styled(Container)(() => ({
   paddingTop: 12,
 }))
 

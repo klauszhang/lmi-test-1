@@ -1,19 +1,19 @@
-import { Stack, Typography } from '@mui/material'
+import { ReactNode } from 'react'
+import { Header } from '../components/fancy-header'
 import { PageContainer } from '../components/page-container'
 
-export function Booked() {
+type PageLayoutProps = {
+  children: ReactNode
+}
+export function PageLayout({ children }: PageLayoutProps) {
   return (
     <PageContainer>
-      <Stack
-        direction="column"
-        alignItems="center"
-        minHeight={150}
-        paddingTop={4}
-      >
-        <Typography variant="h2" component="h2">
-          Some booked event will be here
-        </Typography>
-      </Stack>
+      <Header />
+      {children}
     </PageContainer>
   )
+}
+
+export function Booked() {
+  return <PageLayout>Some booked event will be here</PageLayout>
 }

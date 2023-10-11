@@ -2,10 +2,11 @@ import { EventModel } from '../../models/event'
 import { v4 as uuid } from 'uuid'
 import { BaseMigration } from './base'
 import { eventRepo } from '../repositories/event'
+import { earlyBird, standard, vip } from './1.create-tickets'
 
-export class Init extends BaseMigration {
+export class CreateEvents extends BaseMigration {
   constructor() {
-    super('init')
+    super('create events')
   }
 
   async up(): Promise<void> {
@@ -16,6 +17,7 @@ export class Init extends BaseMigration {
       eventType: 'live',
       program: 'BP',
       address: 'Cincinnati, OH',
+      ticketIds: [earlyBird.id, standard.id],
     })
 
     const event2 = new EventModel({
@@ -25,6 +27,7 @@ export class Init extends BaseMigration {
       eventType: 'live',
       program: 'TN',
       address: 'Prattville, AL',
+      ticketIds: [standard.id, standard.id, vip.id],
     })
 
     const event3 = new EventModel({
@@ -34,6 +37,7 @@ export class Init extends BaseMigration {
       eventType: 'online',
       program: 'BP',
       address: '',
+      ticketIds: [standard.id],
     })
 
     await eventRepo.set(event1)
